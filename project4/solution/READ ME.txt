@@ -1,0 +1,50 @@
+Input nhập vào file robotgraph.txt
+Output in ra terminal khi chạy chương trình
+
+TRÌNH TỰ CHƯƠNG TRÌNH
+Bước 1: Nhập dữ liệu
+	n, m, các cạnh, a, b, c, d, r.
+	Mảng 2D int shortestDist: lưu khoảng cách ngắn nhất giữa 2 cặp đỉnh.
+	//ban đầu sẽ lưu độ dài các cạnh.
+	Mảng 2D bool edge: true nếu 2 giữa cặp đỉnh có cạnh.
+
+Bước 2: Tính toán khoảng cách ngắn nhất giữa 2 cặp đỉnh bằng thuật toán Alarm Clock
+	Hàm calDistance(shortestDist, edge, n): Xét từng đỉnh và tính toán khoảng cách ngắn nhất tới các đỉnh còn lại => ghi lại các giá trị của shhortestDist.
+	hàm minAlarm(): tìm Alarm Clock kêu đầu tiên.
+
+Bước 3: Sau khi cập nhật shortestDist
+	Mảng 2D bool isValidLoc: true nếu khoảng cách 2 đỉnh lớn hơn r.
+	Map locationStatus có:
+		Key: Các cặp đỉnh mà robot1 đứng đỉnh x, robot 2 đứng đỉnh y thỏa mãn khoảng cách (x, y) > r (các trạng thái (x, y)).
+		Value: Danh sách các trạng thái có thể tới từ Key.
+		//Ví dụ: cặp trạng thái (x, y) , có cạnh y-z và trạng thái (x, z) => (x, z) thuộc Value của Key(x, y), và ngược lại.
+
+=> Bài toán trở thành tìm đường đi từ trạng thái (a, b) tới trạng thái (c, d).
+
+Bước 4: Dùng BFS để tìm đường đi trên
+	Hàm findPath().
+
+DANH SÁCH COMMENT
+15	Hàm tìm và trả về vị trí Alarm Clock kêu đầu tiên
+27	Ham tính khoảng cách ngắn nhất giữa các đỉnh
+29	xét lần lượt các đỉnh gốc V
+30	Mảng lưu khoảng cách ngắn nhất từ các đỉnh tới V
+33	true nếu Alarm Clock đã kêu tại đỉnh đó
+48	Cập nhật shortestDist
+55	Dùng BFS tìm đường đi từ trạng thái (a, b) tới (c, d)
+57	Lịch trình di chuyển
+60	Các trạng thái đã tới
+63	Lưu trạng thái và trạng thái cha của nó
+66	Hàng đợi các trạng thái
+69	true nếu tìm thái trạng thái (c, d)
+72	Xuất phát từ trạng thái (a, b)
+96	Viết lại lịch di chuyển
+116	Mảng 2D ghi khoảng cách ngắn nhất giữa 2 đỉnh
+118	Mảng 2D ghi lại cac cạnh đồ thị
+120	Mảng 2D xét trạng thái vị trí 2 robot có hợp lệ
+123	Nhập các cạnh
+135 	Cập nhật shortestDist
+138	Map lưu trạng thái Key và danh sách trạng thái có thể tới từ Key
+155	Nếu trạng thái (i, j) có đường đi tới trạng thái (k, j)
+160	Nếu trạng thái (i, j) có đường đi tới trạng thái (i, k)
+168	Tìm đường đi từ trạng thái (a, b) đến trạng thái (c, d)
